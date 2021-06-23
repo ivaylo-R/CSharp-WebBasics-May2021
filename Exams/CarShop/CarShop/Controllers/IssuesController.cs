@@ -24,13 +24,11 @@ namespace CarShop.Controllers
 
         [Authorize]
         public HttpResponse Add()
-        {
-            return View();
-        }
+            => View();
 
         [Authorize]
         [HttpPost]
-        public HttpResponse Add(string carId,string description)
+        public HttpResponse Add(string carId, string description)
         {
             var car = this.data.Cars.FirstOrDefault(c => c.Id == carId);
 
@@ -55,10 +53,10 @@ namespace CarShop.Controllers
         }
 
         [Authorize]
-        public HttpResponse Delete(string issueId,string carId)
+        public HttpResponse Delete(string issueId, string carId)
         {
             var issue = this.data.Issues.FirstOrDefault(i => i.Id == issueId && i.CarId == carId);
-            if (issue==null)
+            if (issue == null)
             {
                 return Error("Issue does not exists.");
             }
@@ -79,7 +77,7 @@ namespace CarShop.Controllers
                 return Error("Issue does not exists.");
             }
 
-            if (issue.IsFixed==true)
+            if (issue.IsFixed == true)
             {
                 return Redirect($"/Issues/CarIssues?carId={carId}");
             }
